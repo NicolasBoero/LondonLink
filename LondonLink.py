@@ -242,7 +242,7 @@ def journey(start_address, finish_address, type):
 
                 best_charge = folium.Marker(
                     location = (charges_available.loc[charges_available['distance-arr'] == charges_available['distance-arr'].min(), 'coordinates'].iloc[0]),
-                    icon = folium.Icon(color='darkblue', prefix = 'fa', icon='plug', size = 0.5)
+                    icon = folium.Icon(color='lightgreen', prefix = 'fa', icon='plug', size = 0.5)
                     ).add_to(map)
 
                 st.sidebar.markdown(f"**Fastest route** : {round(charges_available.loc[charges_available['distance-arr'] == charges_available['distance-arr'].min(), 'distance-dep'].iloc[0], 2)} KM")
