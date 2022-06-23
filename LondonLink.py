@@ -84,6 +84,21 @@ map = folium.Map(location = [51.502, -0.12] , zoom_start =10, control_scale = Tr
 marker_cluster = MarkerCluster().add_to(map)
 geolocator = Nominatim(user_agent="app.py")
 
+
+folium.GeoJson(london_borders, style_function=lambda x: {'fillColor': '#5296E6', 
+                                                        'color': '#004698',
+                                                        'weight': '1.5'}
+    ).add_to(map)
+
+folium.GeoJson(congestion_charge, style_function=lambda x: {'fillColor': '', 
+                                            'color': '#E84B4B',
+                                            'weight': '2'}
+    ).add_to(map)
+
+
+# NAVBAR ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 def navbar(navbar_options):
     if navbar_options == 'T':
 
@@ -120,7 +135,7 @@ def navbar(navbar_options):
                 location = (row['lat'], row['lon']),
                 tooltip = row['Name'],
                 fill_opacity = 1,
-                color = 'white',
+                color = 'beige',
                 fill_color = 'white', 
                 radius = 1
             ).add_to(map)
@@ -375,17 +390,5 @@ def journey(start_address, finish_address, type):
             return map
 
 journey(start_address, finish_address, type)
-
-
-folium.GeoJson(london_borders, style_function=lambda x: {'fillColor': '#5296E6', 
-                                                        'color': '#004698',
-                                                        'weight': '1.5'}
-    ).add_to(map)
-
-folium.GeoJson(congestion_charge, style_function=lambda x: {'fillColor': '', 
-                                            'color': '#E84B4B',
-                                            'weight': '2'}
-    ).add_to(map)
-
 
 folium_static(map)
